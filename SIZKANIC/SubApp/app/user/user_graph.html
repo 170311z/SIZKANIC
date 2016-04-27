@@ -1,0 +1,121 @@
+<!--user_graph.html
+場所情報に対応する騒音情報を折れ線グラフとして表示する．縦軸は dB値であり，横軸は現在時刻から1時間前までの時刻である。
+-->
+
+<?php
+	//DBの情報
+	$db['host'] = "localhost";
+	$db['user'] = "root";
+	$db['pass'] = "password";
+	$db['dbname'] = "sw";
+	
+	$errorMessage = "";	
+	//表示用とDBの文字コードを設定
+	$enc_disp = "EUC-JP";
+	$enc_db = "EUC-JP";
+	
+	//データの文字コードを変換する用の関数
+	function cnv_enc($string, $to, $from) {
+		$det_enc = mb_detect_encoding($string, $from . "," . $to);
+		if ($det_enc and $det_enc != $to) {
+			return mb_convert_encoding($string, $to, $det_enc);
+		}
+		else {
+			return $string;
+		}
+	}
+	
+	//データベースに接続スクリプト
+	$mysqli = new mysqli($db['host'], $db['user'], $db['pass']);
+	if ($mysqli->connect_errno) {
+		print('<p>データベースへの接続に失敗しました。</p>' . $mysqli->connect_error);
+		exit();
+	}
+	$mysqli->select_db($db['dbname']);
+	
+	//エリア確認用
+	$area_id = $_GET['area'];
+	//print($area_id);
+
+	//データの取り出し
+	//sql文
+	$time = "SELECT time FROM 5min_sound_info WHERE area_id = '" . $area_id . "' ORDER BY 5siID DESC LIMIT 12";
+	$res = $mysqli->query($time);
+	if (!$res) {
+		print('クエリが失敗しました。' . $mysqli->error);
+		$mysqli->close();
+		exit();
+	}
+	$data1 = array();
+	//$data1 = array_reverse($data_a, true);
+	while($row = mysqli_fetch_row($res)) {		
+		array_push($data1,$row);
+	}
+	
+	$level = "SELECT level FROM 5min_sound_info WHERE area_id = '" . $area_id . "' ORDER BY 5siID DESC LIMIT 12";
+	$res = $mysqli->query($level);
+	if (!$res) {
+		print('クエリが失敗しました。' . $mysqli->error);
+		$mysqli->close();
+		exit();
+	}
+
+	$data2 = array();
+	//$data2 = array_reverse($data_2);
+	while($row = mysqli_fetch_row($res)) {
+		array_push($data2,$row);
+	}
+	$mysqli->close();
+
+?>
+
+
+<html>
+<head>
+  <title>test</title>
+<!--[if IE]><script type="text/javascript" src="./html5jp/excanvas/excanvas.js"></script><![endif]-->
+<script type="text/javascript" src="./html5jp/graph/line.js"></script>
+<script type="text/javascript"> 
+window.onload = function() {
+<!-- $timeの値を取得 -->
+  var time = <?php echo json_encode($data1, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
+<!-- $dbの値を取得 -->
+  var db = <?php echo json_encode($data2, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
+  var lg = new html5jp.graph.line("sample");    
+<!-- 騒音情報表示画面で指標を表示させるための、現在のdb値を送信する-->
+  var val = db[0]; 
+  window.localStorage.setItem("result", val);
+
+  if( ! lg ) { return; }
+<!--グラフの縦軸の値を入力-->
+  var items = [
+    ["騒音レベル",''+db[11], ''+db[10], ''+db[9],''+db[8], ''+db[7], ''+db[6], ''+db[5], ''+db[4], ''+db[3],''+db[2],''+db[1], ''+db[0]]
+   ];
+<!--グラフの横軸の値を入力-->
+  var params = {
+<!--グラフの横軸の目盛を設定-->
+    x: ["時間", ''+time[11], ''+time[10], ''+time[9],''+time[8], ''+time[7], ''+time[6], ''+time[5], ''+time[4], ''+time[3],''+time[2],''+time[1],''+time[0]],
+<!--グラフの縦軸の目盛を設定-->
+    y: ["騒音レベル(Hz)", 0, 20, 40, 60, 80, 100],
+<!--グラフの縦軸の最大値と最小値の設定-->
+    yMax: 100,
+    yMin: 0,
+<!--折れ線の太さの設定-->
+    lineWidth: [1,2],
+<!--ポイントの大きさの設定-->
+    dotRadius: [3,4],
+<!--ポイントの形の設定-->
+    dotType: ["disc", "square"]
+   };
+  lg.draw(items, params);
+};
+</script>
+</head>
+
+<body>
+
+<!-- グラフの大きさを設定-->  
+<div><canvas width="650" height="400" id="sample"></canvas></div>
+
+</body>
+</html>

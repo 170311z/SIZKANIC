@@ -1,0 +1,225 @@
+#navigation{
+	margin-top: 10px;
+	float: left;
+	width: 220px;
+}
+#contents{
+	margin-top: 10px;
+        margin-left: 240px;
+	width: 540px;
+	font-size: 95%;
+}
+
+#header{
+	width: 800px;
+	height: 5em;
+	background-color: #4682b4;;
+}
+
+div#header h1{
+	font-size: 3em;
+	color: #ffffff;
+	padding-top:25px;
+}
+div#header a{
+	color: #ffffff;
+}
+
+
+#dropmenu{
+}
+#dropmenu li{
+  position: relative;
+  list-style-type: none;
+  background-color: #f0f8ff;
+  border: 1px solid #add8e6;
+  font-size: 95%;
+  text-align: center;
+}
+#dropmenu li a{
+  display: block;
+  margin: 0;
+  padding: 20px 0 11px;
+  color: #0000ff;
+  font-weight: bold;
+  text-decoration: none;
+}
+#dropmenu li:hover > a{
+  background: #3399cc;
+  color: #fff;
+}
+#dropmenu > li:hover > a{
+  border-radius: 3px 3px 0 0;
+}
+
+#dropmenu li ul{
+  list-style: none;
+  position: absolute;
+  top: 100%;
+  left: 5%;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 0 3px 3px;
+}
+
+#dropmenu li:last-child ul{
+  left: 5%;
+  width: 77.5%;
+}
+
+#dropmenu li ul li{
+  overflow: hidden;
+  width: 122.5%;
+  height: 0;
+  -moz-transition: .2s;
+  -webkit-transition: .2s;
+  -o-transition: .2s;
+  -ms-transition: .2s;
+  transition: .1s;
+}
+#dropmenu li ul li a{
+  position:relative;
+  padding: 13px 20px;
+  color: #0000ff;
+  background: #f0f8ff;
+  border: 1px solid #add8e6;
+  font-size: 12px;
+  font-weight: normal;
+  z-index:1;
+}
+#dropmenu li:hover ul li{
+  overflow: visible;
+  height: 38px;
+  border-top: 1px solid #7c8c0e;
+  border-bottom: 1px solid #616d0b;
+}
+
+#dropmenu li:hover ul li:first-child{
+  border-top: 0;
+}
+#dropmenu li:hover ul li:last-child{
+  border-bottom: 0;
+}
+#dropmenu li:hover ul li:last-child a{
+  border-radius: 0 0 3px 3px;
+}
+
+
+
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #ffffff;
+	color: #000000;
+	line-height: 1.3em;
+}
+
+.top_t {
+	color: #333333;
+	font-size: 95%;
+	background-color: #add8e6;
+	padding: 5px;
+ }
+
+a:link {
+		color:#0000ff;
+		text-decoration:none;
+}
+
+.none{
+		list-style-type:none;
+}
+
+
+.balloon {
+  position: relative;
+  width: 450px;
+  height: 90px;
+  border-radius:10px;
+  border: 2px solid #33cc00;
+  background-color: #fff;
+  text-align: center;
+}
+.balloon:before {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 85%;
+  margin-left: -10px;
+  width: 0;
+  height: 0;
+  border-top: 15px solid #33cc00;
+  border-left: 15px solid transparent;
+  border-right: 2px solid transparent;
+}
+.balloon:after {
+  content: "";
+  position: absolute;
+  bottom: -13px;
+  left: 85%;
+  margin-left: -10px;
+  width: 0;
+  height: 0;
+  border-top: 15px solid #fff;
+  border-left: 15px solid transparent;
+  border-right: 2px solid transparent;
+}
+
+#zukei {
+  margin-top:20px;	
+  position:relative;
+  left:25%;
+
+}
+
+button.button8 {
+    margin-top:20px;
+    margin-bottom:20px;
+    margin-left:5px;
+    margin-right:5px;
+   /* 文字サイズを1.4emに指定 */
+    font-size: 1.3em;
+    /* 文字の太さをboldに指定 */
+    font-weight: bold;
+    /* 縦方向に30px、
+     * 横方向に10pxの余白を指定 */
+    padding: 30px 5px;
+    /* 文字色を白色に指定 */
+    color: #fff;
+    /* ボーダーをなくす */
+    border-style: none;
+    /* ボタンの影の指定
+     * 影の横幅を2px
+     * 縦長を2px
+     * ぼかしを3px
+     * 広がりを1px
+     * 色を#666（グレー）に指定 */
+    box-shadow: 2px 2px 3px 1px #666;
+    -moz-box-shadow: 2px 2px 3px 1px #666;
+    -webkit-box-shadow: 2px 2px 3px 1px #666;
+    /* テキストの影の指定
+     * 影の横幅を1px
+     * 縦長を1px
+     * ぼかしを2px
+     * 色を#000（黒）に指定 */
+    text-shadow: 1px 1px 2px #000;
+    /* グラデーションの指定 */
+    background: -moz-linear-gradient(bottom, #36d, #248 50%, #36d);
+    background: -webkit-gradient(linear, left bottom, left top, from(#36d), color-stop(0.5, #248), to(#36d));
+    /* 角丸の指定 */
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+button.button8:hover {
+    /* 透明度を40%に指定 */
+    opacity: 0.6;
+}
+
+#tale{
+	width: 800px;
+	height:1.5em;
+	margin-top: 3.3em;
+	background-color: #4682b4;
+}
+

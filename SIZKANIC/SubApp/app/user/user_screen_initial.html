@@ -1,0 +1,71 @@
+<!--
+「利用者初期画面」の表示を行う．
+左側のメニュー欄で、「ホーム」、「エリア選択」、「リンク」のいずれかを選択できる．
+「ホーム」を選択すると、「利用者初期画面」が表示される．
+「エリア選択」を選択すると、「1Fメディア学習室」、「2F学習スペース2」、「2F学習スペース2」のいずれかを選択することが出来る。選択すると、この場所情報に沿った騒音情報を表示する．
+「リンク」を選択すると、「高知工科大学附属図書館」のHPに遷移する．
+右側には，「お知らせ」、「お問い合わせ」といった情報を表示する．
+ -->
+
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<title>SIZKANIC</title>
+	<link rel="stylesheet" href="user_screen.css" type="text/css">
+  </head>
+  <body>
+	<div id="header">
+	  <h1><a href="index.html">SIZKANIC</a></h1>
+	</div>
+	<div id="navigation">
+	  <ul id="dropmenu">
+	    <li><a href="index.html">ホーム</a>
+	       <li><a>エリア選択</a>
+		<ul>
+		       <li><a href="./user_screen_1f.php">1Fメディア学習室</a>
+		       <li><a href="./user_screen_2f_1.php">2F学習スペース①</a>
+	                    <li><a href="./user_screen_2f_2.php">2F学習スペース②</a>
+		</ul>
+	      <li><a>リンク</a>
+		<ul>
+		       <li><a href="http://www.kochi-tech.ac.jp/library/">高知工科大学</br>付属図書館</a>
+		</ul>
+	</ul>
+	</div>
+	<div id="contents">
+	<img src="./gazou/library.jpg" width="530" height="130" border="0">
+	<div class="balloon"><h2>先週の図書館内は『とても静か』でした<br>
+	<span style="line-height:200%">ありがとうございます</span></h2></div> 
+	<div id="zukei"><img src="./gazou/sizkani.png" width="80%"></div>
+
+	<h2 class="top_t">■お知らせ</h2>	
+	<ul>
+		<li>14:00～15:30 頃は図書館の清掃を行います。ご了承くださいませ。
+	</ul>
+
+	<h2 class="top_t">■エリア選択</h2>	
+	       <button class="button8" type="button"  onclick="location.href='user_screen_1f.php'">1Fメディア学習室</button>
+	       <button class="button8" type="button" onclick="location.href='user_screen_2f_1.php'">2F学習スペース①</button>
+	       <button class="button8" type="button" onclick="location.href='user_screen_2f_2.php'">2F学習スペース②</button>
+
+	<h2 class="top_t">■お問い合わせ</h2>
+	<p align="right">
+	<ul>
+	      <li class="none"><a>Divea株式会社</a>
+	     <li class="none"><a>divea_saport@hotmail.com</a>
+	      <li class="none"><font size="-2">ホームページ開設: 2016/02/01</font>
+	</ul>
+	</p>
+	</div>
+
+	<div id="navigation">
+	<h4>Divea株式会社</h4>
+	</div>
+	<div id="tale">
+	</div>
+  </body>
+</html>
